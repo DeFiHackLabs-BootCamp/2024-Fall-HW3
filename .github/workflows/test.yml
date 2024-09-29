@@ -40,9 +40,9 @@ jobs:
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: Problem 1
-        command: cd hw && forge test --mt test_Increment
-        timeout: 10
-        max-score: 10
+        command: cd hw && forge test --match-contract LenderTest
+        timeout: 30
+        max-score: 50
 
     ## Modify Problem 2 Configuration
     - name: Problem 2
@@ -50,9 +50,9 @@ jobs:
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: Problem 2
-        command: cd hw && forge test --mt testFuzz_SetNumber
-        timeout: 10
-        max-score: 10
+        command: cd hw && forge test --match-contract MinterTest
+        timeout: 30
+        max-score: 50
 
     ## Add More Problem Below
     ## Problem 3 ...
