@@ -8,7 +8,6 @@ import {ERC20} from "openzeppelin-contracts/token/ERC20/ERC20.sol";
 /// @title Minter
 /// @notice ERC20 token contract representing AmazingToken.
 contract Minter is ERC20, AccessControl {
-
     /*//////////////////////////////////////////////////////////////
                                 EVENTS
     //////////////////////////////////////////////////////////////*/
@@ -17,7 +16,7 @@ contract Minter is ERC20, AccessControl {
     event TokensClaimed(address user, uint256 amount);
 
     /// @notice Event emitted when tokens are minted.
-    event TokensMinted(address user, uint256 amount);    
+    event TokensMinted(address user, uint256 amount);
 
     /*//////////////////////////////////////////////////////////////
                             STATE VARIABLES
@@ -29,12 +28,10 @@ contract Minter is ERC20, AccessControl {
     /// @notice Role for staking tokens.
     bytes32 public constant STAKER_ROLE = keccak256("STAKER_ROLE");
 
-    uint256 public constant INITIAL_OWNER_MINT = 10**18 * 10**8 * 3;
-
+    uint256 public constant INITIAL_OWNER_MINT = 10 ** 18 * 10 ** 8 * 3;
 
     /// @notice Maximum supply of AMZ tokens.
-    uint256 public constant MAX_SUPPLY = 10**18 * 10**10;
-
+    uint256 public constant MAX_SUPPLY = 10 ** 18 * 10 ** 10;
 
     /// The address that has owner power
     address _ownerAddress;
@@ -50,13 +47,11 @@ contract Minter is ERC20, AccessControl {
                                CONSTRUCTOR
     //////////////////////////////////////////////////////////////*/
 
-    /// @notice Grants roles to contract. 
+    /// @notice Grants roles to contract.
     /// @notice Mints the initial supply of tokens.
     /// @param ownerAddress The address of the owner who deploys the contract
     /// the initial supply is minted.
-    constructor(address ownerAddress)
-        ERC20("AmazingToken", "Amz")
-    { 
+    constructor(address ownerAddress) ERC20("AmazingToken", "Amz") {
         _ownerAddress = ownerAddress;
         isAdmin[_ownerAddress] = true;
         _mint(_ownerAddress, INITIAL_OWNER_MINT);
@@ -79,7 +74,7 @@ contract Minter is ERC20, AccessControl {
     /// @param newMinterAddress is new minter
     function addMinter(address newMinterAddress) external {
         require(msg.sender == _ownerAddress);
-       _grantRole(MINTER_ROLE, newMinterAddress);
+        _grantRole(MINTER_ROLE, newMinterAddress);
     }
 
     /// @notice Adds new staker
@@ -90,14 +85,14 @@ contract Minter is ERC20, AccessControl {
         _grantRole(STAKER_ROLE, newStakerAddress);
     }
 
-    /// @notice Updates admin 
+    /// @notice Updates admin
     /// @dev Only the owner can call
     /// @param adminAddress is admin
     /// @param access is admin or not.
     function updateAdminAccess(address adminAddress, bool access) external {
         require(msg.sender == _ownerAddress);
         isAdmin[adminAddress] = access;
-    }  
+    }
 
     /// @notice Approves allowances for a batch of recipients from the owner's address.
     /// @dev only admin can call
@@ -132,18 +127,13 @@ contract Minter is ERC20, AccessControl {
         _burn(msg.sender, amount);
     }
 
-
     /// @notice Approves the specified amount of tokens to staker
     /// @dev The caller must have the staker role.
     /// @param owner The owner of the tokens.
     /// @param spender The address for which to approve the allowance.
     /// @param amount The amount of tokens to be approved.
     function approveStaker(address owner, address spender, uint256 amount) public {
-        require(
-            hasRole(STAKER_ROLE, msg.sender), 
-            "ERC20: must have staker role to approve staking"
-        );
+        require(hasRole(STAKER_ROLE, msg.sender), "ERC20: must have staker role to approve staking");
         _approve(owner, spender, amount);
     }
- 
 }

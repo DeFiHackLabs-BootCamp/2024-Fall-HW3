@@ -39,9 +39,9 @@ contract LenderBaseTest is Test {
     }
 
     modifier checkChallengeSolved() {
-    _;
-    vm.expectRevert(stdError.assertionError);
-    vm.prank(someUser);
-    receiverContract.executeFlashLoan(10);
+        _;
+        vm.expectRevert(stdError.assertionError);
+        vm.prank(someUser);
+        receiverContract.executeFlashLoan(10);
     }
 }
