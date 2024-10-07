@@ -42,7 +42,7 @@ jobs:
         test-name: Problem 1
         command: cd hw && forge test --match-contract LenderTest
         timeout: 30
-        max-score: 50
+        max-score: 80
 
     ## Modify Problem 2 Configuration
     - name: Problem 2
@@ -52,7 +52,7 @@ jobs:
         test-name: Problem 2
         command: cd hw && forge test --match-contract MinterTest
         timeout: 30
-        max-score: 50
+        max-score: 20
 
     ## Add More Problem Below
     ## Problem 3 ...
