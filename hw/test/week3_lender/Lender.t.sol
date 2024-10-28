@@ -6,5 +6,7 @@ import "./LenderBaseTest.t.sol";
 contract LenderTest is LenderBaseTest {
     function test_write_here() public checkChallengeSolved {
         /*  write here  */
+        vm.prank(attacker);
+        token.transfer(address(pool), 1);
     }
 }

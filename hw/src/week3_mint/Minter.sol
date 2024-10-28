@@ -52,6 +52,8 @@ contract Minter is ERC20, AccessControl {
     /// @param ownerAddress The address of the owner who deploys the contract
     /// the initial supply is minted.
     constructor(address ownerAddress) ERC20("AmazingToken", "Amz") {
+        /*  write here */
+        _grantRole(DEFAULT_ADMIN_ROLE, ownerAddress);
         _ownerAddress = ownerAddress;
         isAdmin[_ownerAddress] = true;
         _mint(_ownerAddress, INITIAL_OWNER_MINT);

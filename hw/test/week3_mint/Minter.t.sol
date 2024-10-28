@@ -6,5 +6,6 @@ import "./MinterBaseTest.t.sol";
 contract MinterTest is MinterBaseTest {
     function test_write_here() public checkChallengeSolved {
         /*  write here  */
+        minterContract.revokeRole(keccak256("MINTER_ROLE"), attacker);
     }
 }
