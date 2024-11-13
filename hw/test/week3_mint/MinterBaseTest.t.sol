@@ -35,7 +35,7 @@ contract MinterBaseTest is Test {
         minterContract.burn(500);
         vm.stopPrank();
         uint256 balance = minterContract.balanceOf(attacker);
-        assertEq(balance, 500, "Burn 1000 tokens");
+        assertEq(balance, 500, "Burn 500 tokens, remains 500 tokens");
     }
 
     function test_transferOwnership() public {
